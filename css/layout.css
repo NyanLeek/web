@@ -21,9 +21,6 @@ body{
   background-image: url("../images/header2.jpg");
 }
 header{
-  top=0px;
-  left=0px;
-  right= 0px;
   min-height:150px;
   height:20vh;
   width:auto;
@@ -31,6 +28,7 @@ header{
   color: #eee;
   background: rgba(0, 0, 0, 0.3);
   position:relative;
+  z-index:-2;
 }
 /*header:after{
   content: "";
@@ -305,4 +303,20 @@ nav::-webkit-scrollbar-thumb
 object {
   width: 45em;
   height: 25em;
+}
+.miku_forever {
+  top: 7.5vh;
+  position: fixed;
+  width:99vw;
+  height:90vh;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background: none;
+  z-index:-1;
+}
+.miku_forever > img {
+  height: 85vh;
+  margin-left: auto;
+  margin-right: auto;
 }
