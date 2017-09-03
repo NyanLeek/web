@@ -306,16 +306,17 @@ object {
 }
 .miku_forever {
   top: 7.5vh;
-  position: fixed;
-  width:99vw;
+  width: 100vw;
   margin: 0;
   padding: 0;
   text-align: center;
   background: none;
-  z-index:-1;
+  z-index: -1;
+  position: absolute;
 }
 .miku_forever > img {
-  height: auto;
-  max-height:85vh;
-  max-width : 100%;
+  height: 100%;
+  width: 100%;
+  /* max-height: 85vh; */
+  max-width: 100%;
 }
