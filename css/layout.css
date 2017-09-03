@@ -308,7 +308,6 @@ object {
   top: 7.5vh;
   position: fixed;
   width:99vw;
-  height:90vh;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -317,6 +316,5 @@ object {
 }
 .miku_forever > img {
   height: 85vh;
-  margin-left: auto;
-  margin-right: auto;
+  width : auto;
 }
