@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+  <head>
+    <link rel="icon" type="image/png" sizes="96x96" href="./images/favicon-96x96.png" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <title>Tutorial HTML</title>
+  </head>
+  <body>
+    <header>
+      <h1>Personal Webpage</h1>
+      <h2>Tutorial HTML</h2>
+    </header>
+    <nav>
+      <a href="./index.xhtml">Home</a>
+      <a href="./htmltut.xhtml">Tutorial HTML</a>
+      <div class="subnav">
+        <a href="#intro">Introducción a HTML</a>
+        <a href="#elements">Elementos HTML</a>
+        <a href="#attributes">Atributos HTML</a>
+        <a href="#basic">HTML Básico</a>
+        <a href="#entities">Entidades HTML</a>
+        <a href="#root">Elementos Raíz</a>
+        <a href="#meta">Elementos de Metadatos</a>
+        <a href="#sections">Elementos para seccionar</a>
+        <a href="#grouping">Elementos para agrupación de contenido</a>
+        <a href="#textSemantics">Elementos de semántica de texto</a>
+        <a href="#editing">Elementos de edición</a>
+        <a href="#embedded">Elementos para contenido embebido</a>
+        <a href="#tabular">Elementos para tablas  </a>
+        <a href="#forms">Elementos para formularios</a>
+        <a href="#scripting">Elementos para scripting</a>
+      </div>
+      <a href="./miku.xhtml">初音ミク</a>
+      <aside></aside>
+    </nav>
+    <main>
+      <section id="intro">
+        <h2>¿Qué es HTML?</h2>
+        <p>HTML es el lenguaje de marcado estándar para crear páginas web.</p>
+        <p>
+          <ul>
+            <li>HTML significa Hyper Text Markup Language, Lenguaje de Marcado de Hyper Texto</li>
+            <li>HTML describe la estructura de las paginas Web usando marcado</li>
+            <li>Los elementos HTML son las piezas con las que se construyen las paginas HTML</li>
+            <li>Los elementos HTML están representados por etiquetas</li>
+            <li>Las etiquetas HTML identifican piezas de contenido, como los encabezados, párrafos, tablas etc</li>
+            <li>Los navegadores no muestran las etiquetas HTML, pero las usan para renderizar el contenido de la pagina</li>
+          </ul>
+        </p>
+        <h3>Versiones HTML</h3>
+        <p>Desde los inicios de la web ha habido diferentes versiones de HTML:
+          <ul>
+            <li>HTML: 1991</li>
+            <li>HTML2.0: 1995</li>
+            <li>HTML3.2: 1997</li>
+            <li>HTML4.01: 1999</li>
+            <li>XHTML: 2000</li>
+            <li>HTML5: 2014</li>
+          </ul>
+        </p>
+      </section>
+      <section id="elements">
+        <h2>Elementos HTML</h2>
+        <p>Los elementos HTML consisten usualmente de una etiqueta de inicio y una etiqueta de fin, con el contenido insertado entre estas dos, por ejemplo:</p>
+        <code class="box"><![CDATA[<etiqueta>Contenido...</etiqueta>]]></code>
+        <p>El elemento HTML es todo, del inicio de la etiqueta, hasta el fin.</p>
+        <p>Los elementos HTML caen en distintas categorías:
+        </p>
+        <ul>
+          <li><a href="#root">Raiz</a></li>
+          <li><a href="#meta">Metadatos</a></li>
+          <li><a href="#sections">Secciones</a></li>
+          <li><a href="#grouping">Agrupación de contenido</a></li>
+          <li><a href="#textSemantics">Semántica de texto</a></li>
+          <li><a href="#editing">Edición</a></li>
+          <li><a href="#embedded">Contenido embebido</a></li>
+          <li><a href="#tabular">Tablas</a></li>
+          <li><a href="#forms">Formularios</a></li>
+          <li><a href="#scripting">Scripting</a></li>
+        </ul>
+      </section>
+      <section id="attributes">
+        <h2>Atributos HTML</h2>
+        <p>
+          <ul>
+            <li>Todos los elementos HTML pueden tener <strong>atributos</strong>.</li>
+            <li>Los atributos proveen <strong>información adicional</strong> acerca de un elemento.</li>
+            <li>Los atributos siempre son especificados en la <strong>etiqueta de inicio</strong>.</li>
+            <li>Los atributos se declaran en forma de pares: <code><b>nombre="valor"</b></code></li>
+          </ul>
+        Excepto que sea especificado, los atributos pueden tener cualquier cadena de caracteres, incluyendo una vacia. No hay restricción en lo que el texto puede ser, excepto que sea especificado explicitamente.
+        </p>
+        <p>Los elementos HTML pueden estar anidados, y todos los documentos HTML consisten de elementos anidados, </p>
+        <p class="note">Se recomienda que los nombres de los atributos sean escritos siempre en letra minúscula. A pesar de que la especificacion HTML5 no requiere comillas dobles alrededor de los valores, se recomienda que siempre se incluyan, ya que son obligatorias en otros tipos de documentos mas estrictos, como XHTML. Aun así, a veces es necesario usar comillas, por ejemplo cuando un valor contiene un espacio.</p>
+        <h2>Atributos globales</h2>
+        <p>Existen ciertos atributos que se pueden aplicar a cualquiera y todos los elementos HTML. Los mas importantes y comunes, son:
+        <ul>
+          <li><a href="#a_id">id</a></li>
+          <li><a href="#a_class">class</a></li>
+          <li><a href="#a_title">title</a></li>
+          <li><a href="#a_tabindex">tabindex</a></li>
+          <li><a href="#a_style">style</a></li>
+        </ul>
+        </p>
+        <section id="a_id">
+          <h3>Atributo <a href="https://www.w3.org/TR/html/dom.html#the-id-attribute" target="_blank"><code>id</code></a></h3>
+          <p>El atributo <code>id</code> especifica el identificador único del elemento dentro del documento.</p>
+          <p>El valor debe ser único entre todos los identificadores dentro de su raíz de documento, debe contener al menos un caracter. El valor no puede contener ni un espacio.</p>
+          <p class="note">No hay restricción alguna en la forma que puede tomar un atributo <code>id</code>, pueden ser dígitos, guiones bajos, tener solo signos de puntuación, etcétera.</p>
+          <p class="note">El identificador único de un elemento se puede usar para una variedad de propósitos, mas notablemente para ligar partes especificas de un documento, para usar un elemento con scripts, o para asignar un estilo css a un elemento.</p>
+          <p class="note">Los identificadores son <em>opacos</em>, es decir, no se derivan significados particulares de su valor.</p>
+          <p class="example">
+          El siguiente código define un atributo y un elemento <code>a</code> que hace liga a dicho elemento:
+          <code class="box">&lt;section <strong>id=&quot;section1&quot;</strong>&gt; Text &lt;/section&gt;
+&lt;a href=&quot;<strong>#section1</strong>&quot;&gt;Link to section one&lt;/a&gt;
+</code>
+          </p>
+        </section>
+        <section id="a_class">
+          <h3>Atributo <a href="https://www.w3.org/TR/html/dom.html#classes" target="_blank"><code>class</code></a></h3>
+          <p>Todos los elementos HTML pueden tener un atributo <code>class</code> especificado.</p>
+          <p>El atributo, si esta especificado, debe tener un valor que es un conjunto de <em>tokens</em> separados por espacio, que represetan las varias clases a las que el elemento pertenece. Los duplicados son ignorados.</p>
+          <p class="note">Asignar clases a un elemento, afecta los selectores de CSS, el método <code>getElementsByClassName()</code> en el DOM, etcétera.</p>
+          <p>No hay restricciones adicionales en los <em>tokens</em> que pueden ser usados en el atributo <code>class</code>, pero se recomienda que se usen valores que describan la naturaleza del contenido, en lugar de valores que representen la presentación deseada del contenido.</p>
+          <p class="example"><p>El siguiente código define un elemento HTML al que se le define un atributo <code>class</code>; seguido de una porcion de código CSS que usa dicha clase:</p>
+          <code class="box">&lt;a href=&quot;./#home&quot; <strong>class=&quot;home_link&quot;</strong>&gt;Home&lt;/a&gt;
+<hr /><strong>.home_link</strong> {
+  display:block;
+  padding:5px;
+  text-decoration:none;
+  color:#333;
+  border-radius:5px;
+  margin: 0px;
+}</code></p>
+        </section>
+        <section id="a_title">
+          <h3>Atributo <a href="https://www.w3.org/TR/html/dom.html#the-title-attribute" target="_blank"><code>title</code></a></h3>
+          <p>El atributo <code>title</code> representa información adicional del elemento, el cual sería apropiado para una <em>tooltip</em>. En una liga, puede ser el título o description del recurso objetivo; en una imagen, podrían ser los creditos de la imagen o una descripción; en un párrafo, podría ser una nota de pie de página, o comentarios acerca del texto. El valor es texto.</p>
+          <p class="note">Depender del atributo <code>title</code> no es recomendado, puesto que muchos agentes de usuario no exponen el valor del atributo de una forma accesible requerida por la especificación (requiere un dispositivo como un mouse).</p>
+          <p>Si el atributo se omite del elemento, se implica que el título del elemento ancestro más cercano que se encuentre definido es relevante para el elemento. </p>
+          <p class="example"><p>El siguiente código muestra un ejemplo de la etiqueta <code>abbr</code> con un atributo <code>title</code>.</p>
+          <code class="box">&lt;p&gt;My logs show that there was some interest in &lt;abbr <strong>title=&quot;HypertextTransport Protocol&quot;</strong>&gt;HTTP&lt;/abbr&gt; today.&lt;/p&gt;</code></p>
+          <p class="demo"><p>Demostración del código anterior:</p>
+          <code><p>My logs show that there was some interest in <abbr title="HypertextTransport Protocol">HTTP</abbr> today.</p></code>
+          </p>
+        </section>
+        <section id="a_tabindex">
+          <h3>Atributo <a href="https://www.w3.org/TR/html/editing.html#the-tabindex-attribute" target="_blank"><code>tabindex</code></a></h3>
+          <p>El atributo <code>tabindex</code> permite indicar que es posible que un elemento sea enfocable, si se pretende que sea accesible usando <a href="https://www.w3.org/TR/html/editing.html#sequential-focus-navigation" title="W3C" target="_blank">navegación secuencial</a> y, en su caso, cual es el orden relativo en la navegación secuencial.</p>
+          <p>Cuando el atributo es omitido el navegador aplica uno por defecto.</p>
+          <p>En caso de ser especificado, debe tener un valor que sea un número entero <a href="https://www.w3.org/TR/html/infrastructure.html#valid-integer" title="W3C" target="_blank">válido</a>, números negativos hacen el elemento inaccesible por navegación secuencial.</p>
+          <p class="example"><p>El siguiente código muestra el uso del atributo <code>tabindex</code> en un formulario:</p>
+          <code class="box">&lt;form&gt;
+  &lt;label for=&quot;user&quot;&gt;Username&lt;/label&gt;
+  &lt;input type=&quot;text&quot; name=&quot;user&quot; <strong>tabindex=&quot;1&quot;</strong> /&gt;&lt;br /&gt;
+  &lt;label for=&quot;email&quot;&gt;e-mail&lt;/label&gt;
+  &lt;input type=&quot;email&quot; name=&quot;email&quot; <strong>tabindex=&quot;3&quot;</strong> /&gt;&lt;br /&gt;
+  &lt;label for=&quot;phone&quot;&gt;Phone number&lt;/label&gt;
+  &lt;input type=&quot;tel&quot; name=&quot;user&quot; <strong>tabindex=&quot;2&quot;</strong> /&gt;
+&lt;/form&gt;</code>
+          </p>
+          <p class="demo">
+          <p>Demostración del código anterior:</p>
+          <code><form>
+  <label for="user">Username</label>
+  <input type="text" name="user" tabindex="1" /><br />
+  <label for="email">e-mail</label>
+  <input type="email" name="email" tabindex="3" /><br />
+  <label for="phone">Phone number</label>
+  <input type="tel" name="user" tabindex="2" />
+</form></code></p>
+        </section>
+        <section id="a_style">
+          <h3>Atributo <a href="https://www.w3.org/TR/html/dom.html#the-style-attribute" target="_blank"><code>style</code></a></h3>
+          <p>Todos los elementos HTML pueden tener un atributo <code>style</code>. Es un atributo de estilo CSS, definido por la especificacion <a href="https://www.w3.org/TR/html/references.html#biblio-css-style-attr" target="_blank">CSS-STYLE-ATTR</a></p>
+          <p class="note warning">No se debe depender de este atributo, pues algunos navegadores optan por ignorarlo o bloquearlo.</p>
+          <p class="note">Usar este atributo en particular para mostrar u ocultar contenido es no-estándar, y debe ser evitado. En su lugar se debe usar el attributo <code>hidden</code>.</p>
+          <p class="example"><p>El código siguiente muestra el uso de el atributo <code>style</code> en un elemento <code>p</code>:</p>
+          <code class="box">&lt;p <strong>style=&quot;background-color:#5cf; color:#fff;&quot;</strong> &gt;This is a styled paragraph&lt;/p&gt;</code>
+          </p>
+          <p class="demo"><p>Demostración del codigo anterior:</p>
+          <code><p style="background-color:#5cf; color:#fff;">This is a styled paragraph</p></code></p>
+        </section>
+      </section>
+      <section id="basic">
+        <h2>HTML Básico</h2>
+        <p class="example">Una página HTML básica:
+        <code class="box"><![CDATA[<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+  </head>
+  <body>
+    <h1>My First Heading</h1>
+    <p>My first paragraph.</p>
+  </body>
+</html>
+]]></code>
+      </p>
+      <h3>Explicación del Ejemplo</h3>
+      <ul>
+        <li>La declaración <code >&lt;!DOCTYPE html&gt;</code> define que este documento es html</li>
+        <li>El elemento <code>&lt;html&gt;</code> es la raíz de la pagina HTML</li>
+        <li>El elemento <code>&lt;head&gt;</code> contiene meta-inforamción acerca del documento</li>
+        <li>El elemento <code>&lt;title&gt;</code> especifica un título al documento</li>
+        <li>El elemento <code>&lt;body&gt;</code> contiene el contenido visible de la página</li>
+        <li>El elemento <code>&lt;h1&gt;</code> especifica un encabezado de nivel 1</li>
+        <li>El elemento <code>&lt;p&gt;</code> define un párrafo</li>
+      </ul>
+      </section>
+      <section id="entities">
+      <h2>Entidades HTML</h2>
+      <p>Algunos caracteres son reservados en HTML.</p>
+      <p>Por ejemplo, si se usa el símbolo menor que <code>(&lt;)</code>, o mayor que <code>(&gt;)</code>, en texto normal, el navegador los puede interpretar como etiquetas, provocando errores en la renderización.</p>
+      <p>Para poder mostrar estos caracteres especiales en texto, se usan <strong>Entidades HTML</strong>.</p>
+      <p class="example">Las entidades HTML se escriben de la siguiente forma:
+      <code class="box"><i>&amp;nombre_entidad;</i>
+o bien:
+&amp;#numero_entidad;
+</code>
+      Para usar los símbolos mayor que y menor que:
+      <code class="box">&amp;gt; &#8594; &gt;
+&amp;lt; &#8594; &lt;</code>
+      </p>
+      </section>
+      <section id="root">
+        <h2>Elementos raíz</h2>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/semantics.html#the-html-element" target="_blank"><code>html</code></a></h3>
+          <p>El elemento <code>html</code> representa la raiz de los documentos HTML.</p>
+          <p>Se recomienda incluir el atributo <code>lang</code> en el elemento raiz <code>html</code>, para especificar el lenguaje a usar para motores sintetizadores de voz.</p>
+          <p class="example">
+          <code class="box">&lt;!DOCTYPE html&gt;
+<strong>&lt;html lang="en"&gt;</strong>
+  &lt;head&gt;
+    &lt;title&gt;Example page title&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Heading level 1&lt;/h1&gt;
+  &lt;/body&gt;
+<strong>&lt;/html&gt;</strong></code>
+        </p>
+        </section>
+      </section>
+      <section id="meta">
+        <h2>Elementos de metadatos</h2>
+        <p>Los metadatos son <i>datos de los datos</i>. Visto de otra forma, es información acerca de la página necesaria para ser mostrada.</p>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-head-element" target="_blank"><code>head</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-title-element" target="_blank"><code>title</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-base-element" target="_blank"><code>base</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-link-element" target="_blank"><code>link</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-meta-element" target="_blank"><code>meta</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-style-element" target="_blank"><code>style</code></a></h3>
+        </section>
+      </section>
+      <section id="sections">
+        <h2>Elementos para delimitar secciones</h2>
+        <p></p>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-body-element" target="_blank"><code>body</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-article-element" target="_blank"><code>article</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-section-element" target="_blank"><code>section</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-nav-element" target="_blank"><code>nav</code></a></h3>
+        </section>
+        <section>
+          <h3>Elementos <a href="https://www.w3.org/TR/html/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements" target="_blank"><code>h1, h2, h3, h4, h5</code> y <code>h6</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-header-element" target="_blank"><code>header</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-footer-element" target="_blank"><code>footer</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-address-element" target="_blank"><code>address</code></a></h3>
+        </section>
+      </section>
+      <section id="grouping">
+        <h2>Elementos para agrupar contenido</h2>
+        <p></p>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-p-element" target="_blank"><code>p</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-hr-element" target="_blank"><code>hr</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-pre-element" target="_blank"><code>pre</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-blockquote-element" target="_blank"><code>blockquote</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-ol-element" target="_blank"><code>ol</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-ul-element" target="_blank"><code>ul</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-li-element" target="_blank"><code>li</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-dl-element" target="_blank"><code>dl</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-dt-element" target="_blank"><code>dt</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-dd-element" target="_blank"><code>dd</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-figure-element" target="_blank"><code>figure</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-figcaption-element" target="_blank"><code>figcaption</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-div-element" target="_blank"><code>div</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-main-element" target="_blank"><code>main</code></a></h3>
+        </section>
+      </section>
+      <section id="textSemantics">
+        <h2>Semántica de texto</h2>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-a-element" target="_blank"><code>a</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-em-element" target="_blank"><code>em</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-strong-element" target="_blank"><code>strong</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-small-element" target="_blank"><code>small</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-s-element" target="_blank"><code>s</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-cite-element" target="_blank"><code>cite</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-q-element" target="_blank"><code>q</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-dfn-element" target="_blank"><code>dfn</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-abbr-element" target="_blank"><code>abbr</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-data-element" target="_blank"><code>data</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-time-element" target="_blank"><code>time</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-code-element" target="_blank"><code>code</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-var-element" target="_blank"><code>var</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-samp-element" target="_blank"><code>samp</code></a></h3>
+        </section>
+        <section>
+          <h3>Elementos <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-sub-and-sup-element" target="_blank"><code>sub</code> y <code>sup</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-i-element" target="_blank"><code>i</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-b-element" target="_blank"><code>b</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-u-element" target="_blank"><code>u</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-mark-element" target="_blank"><code>mark</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-ruby-element" target="_blank"><code>ruby</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-rb-element" target="_blank"><code>rb</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-rt-element" target="_blank"><code>rt</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-rtc-element" target="_blank"><code>rtc</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-rp-element" target="_blank"><code>rp</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-bdi-element" target="_blank"><code>bdi</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-bdo-element" target="_blank"><code>bdo</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-span-element" target="_blank"><code>span</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-br-element" target="_blank"><code>br</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-wbr-element" target="_blank"><code>wbr</code></a></h3>
+        </section>
+      </section>
+      <section id="editing">
+        <h2>Edición</h2>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/edits.html#the-ins-element" target="_blank"><code>ins</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/edits.html#the-del-element" target="_blank"><code>del</code></a></h3>
+        </section>
+      </section>
+      <section id="embedded">
+        <h2>Contenido embebido</h2>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-img-element" target="_blank"><code>img</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-iframe-element" target="_blank"><code>iframe</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-embed-element" target="_blank"><code>embed</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-object-element" target="_blank"><code>object</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-param-element" target="_blank"><code>param</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-video-element" target="_blank"><code>video</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-source-element" target="_blank"><code>source</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-track-element" target="_blank"><code>track</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-map-element" target="_blank"><code>map</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-area-element" target="_blank"><code>area</code></a></h3>
+        </section>
+      </section>
+      <section id ="tabular">
+        <h2>Tablas</h2>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-table-element" target="_blank"><code>table</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-caption-element" target="_blank"><code>caption</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-colgroup-element" target="_blank"><code>colgroup</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-col-element" target="_blank"><code>col</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-tbody-element" target="_blank"><code>tbody</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-thead-element" target="_blank"><code>thead</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-tfoot-element" target="_blank"><code>tfoot</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-tr-element" target="_blank"><code>tr</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-td-element" target="_blank"><code>td</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-th-element" target="_blank"><code>th</code></a></h3>
+        </section>
+      </section>
+      <section id="forms">
+        <h2>Formularios</h2>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-form-element" target="_blank"><code>form</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-label-element" target="_blank"><code>label</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-input-element" target="_blank"><code>input</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-button-element" target="_blank"><code>button</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-select-element" target="_blank"><code>select</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-datalist-element" target="_blank"><code>datalist</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-optgroup-element" target="_blank"><code>optgroup</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-option-element" target="_blank"><code>option</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-textarea-element" target="_blank"><code>textarea</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-keygen-element" target="_blank"><code>keygen</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-output-element" target="_blank"><code>output</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-progress-element" target="_blank"><code>progress</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-meter-element" target="_blank"><code>meter</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-fieldset-element" target="_blank"><code>fieldset</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-leyend-element" target="_blank"><code>leyend</code></a></h3>
+        </section>
+      </section>
+      <section id="scripting">
+        <h2>Scripting</h2>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/scripting-1.html#the-script-element" target="_blank"><code>script</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/scripting-1.html#the-noscript-element" target="_blank"><code>noscript</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/scripting-1.html#the-template-element" target="_blank"><code>template</code></a></h3>
+        </section>
+        <section>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/scripting-1.html#the-canvas-element" target="_blank"><code>canvas</code></a></h3>
+        </section>
+      </section>
+    </main>
+    <footer>&#169;2017 </footer>
+  </body>
+</html>
