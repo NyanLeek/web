@@ -315,6 +315,7 @@ object {
   z-index:-1;
 }
 .miku_forever > img {
-  height: 85vh;
-  width : auto;
+  height: auto;
+  max-height:85vh;
+  max-width : 100%;
 }
