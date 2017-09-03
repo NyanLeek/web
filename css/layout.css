@@ -315,8 +315,6 @@ object {
   position: absolute;
 }
 .miku_forever > img {
-  height: 100%;
-  width: 100%;
-  /* max-height: 85vh; */
-  max-width: 100%;
+  height: fit-content;
+  width: fit-content;
 }
