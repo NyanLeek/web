@@ -21,8 +21,8 @@
         <a href="#entities">Entidades HTML</a>
         <a href="#root">Elementos Raíz</a>
         <a href="#meta">Elementos de Metadatos</a>
-        <a href="#sections">Elementos para seccionar</a>
-        <a href="#grouping">Elementos para agrupación de contenido</a>
+        <a href="#sections">Elementos de seccionado semántico</a>
+        <a href="#grouping">Elementos de agrupación</a>
         <a href="#textSemantics">Elementos de semántica de texto</a>
         <a href="#editing">Elementos de edición</a>
         <a href="#embedded">Elementos para contenido embebido</a>
@@ -69,7 +69,7 @@
         <ul>
           <li><a href="#root">Raiz</a></li>
           <li><a href="#meta">Metadatos</a></li>
-          <li><a href="#sections">Secciones</a></li>
+          <li><a href="#sections">Seccionado semántico</a></li>
           <li><a href="#grouping">Agrupación de contenido</a></li>
           <li><a href="#textSemantics">Semántica de texto</a></li>
           <li><a href="#editing">Edición</a></li>
@@ -122,7 +122,7 @@
           <p>El atributo, si esta especificado, debe tener un valor que es un conjunto de <em>tokens</em> separados por espacio, que represetan las varias clases a las que el elemento pertenece. Los duplicados son ignorados.</p>
           <p class="note">Asignar clases a un elemento, afecta los selectores de CSS, el método <code>getElementsByClassName()</code> en el DOM, etcétera.</p>
           <p>No hay restricciones adicionales en los <em>tokens</em> que pueden ser usados en el atributo <code>class</code>, pero se recomienda que se usen valores que describan la naturaleza del contenido, en lugar de valores que representen la presentación deseada del contenido.</p>
-          <p class="example"><p>El siguiente código define un elemento HTML al que se le define un atributo <code>class</code>; seguido de una porcion de código CSS que usa dicha clase:</p>
+          <p class="example"><p>El siguiente código define un elemento HTML al que se le define un atributo <code>class</code>; seguido de una porción de código CSS que usa dicha clase:</p>
           <code class="box">&lt;a href=&quot;./#home&quot; <strong>class=&quot;home_link&quot;</strong>&gt;Home&lt;/a&gt;
 <hr /><strong>.home_link</strong> {
   display:block;
@@ -201,7 +201,7 @@
       <ul>
         <li>La declaración <code >&lt;!DOCTYPE html&gt;</code> define que este documento es html</li>
         <li>El elemento <code>&lt;html&gt;</code> es la raíz de la pagina HTML</li>
-        <li>El elemento <code>&lt;head&gt;</code> contiene meta-inforamción acerca del documento</li>
+        <li>El elemento <code>&lt;head&gt;</code> contiene meta-información acerca del documento</li>
         <li>El elemento <code>&lt;title&gt;</code> especifica un título al documento</li>
         <li>El elemento <code>&lt;body&gt;</code> contiene el contenido visible de la página</li>
         <li>El elemento <code>&lt;h1&gt;</code> especifica un encabezado de nivel 1</li>
@@ -247,21 +247,108 @@ o bien:
         <p>Los metadatos son <i>datos de los datos</i>. Visto de otra forma, es información acerca de la página necesaria para ser mostrada.</p>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-head-element" target="_blank"><code>head</code></a></h3>
+          <p>El elemento <code>head</code> es el encabezado de la página, éste no es renderizado por el navegador. Se debe incluir como primer elemento dentro del elemento <code>&lt;html&gt;</code>.</p>
+          <p>Contiene los elementos de metadatos del documento HTML, de los cuales <em>exactamente uno</em> es el elemento <code>&lt;title&gt;</code>, y <em>no más de uno</em> es el elemento <code>&lt;base&gt;</code>.</p>
+          <p class="example">
+          <p></p>
+          <code class="box">&lt;!doctype html&gt;
+  &lt;html&gt;
+  <strong>&lt;head&gt;</strong>
+    <em>&lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;base href=&quot;https://www.example.com/&quot;&gt;
+    &lt;title&gt;an application with a long head&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;default.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet alternate&quot; href=&quot;big.css&quot; title=&quot;big text&quot;&gt;
+    &lt;script src=&quot;support.js&quot;&gt;&lt;/script&gt;
+    &lt;meta name=&quot;application-name&quot; content=&quot;long headed application&quot;&gt;</em>
+  <strong>&lt;/head&gt;</strong>
+  &lt;body&gt;<hr /></code>
+          </p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-title-element" target="_blank"><code>title</code></a></h3>
+          <p>El elemento <code>title</code> es un elemento de metadatos. Representa el nombre o título del documento. Se debe usar este elemento para identificar el documento, aun cuando se use fuera de contexto, como en marcadores, historiales o resultados de busqueda.</p>
+          <p>No puede haber mas que un elemento <code>title</code> en el documento.</p>
+          <p class="example">
+          <p>El siguiente código muestra un ejemplo de uso del elemento <code>title</code>:</p>
+          <code class="box">&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    <strong>&lt;title&gt;A document with a short head&lt;/title&gt;</strong>
+  &lt;/head&gt;
+  &lt;body&gt;</code>
+          </p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-base-element" target="_blank"><code>base</code></a></h3>
+          <p>El elemento <code>base</code> es un elemento de metadatos.</p>
+          <p>Permite especificar una <a href="https://www.w3.org/TR/html/infrastructure.html#document-base-url" target="_blank">URL base de documento</a>, con el proposito de procesar URL's relativas dentro del documento.</p>
+          <p>Debe tener obligatoriamente un atributo <code class="atribute">href</code>, un atributo <code class="atribute">target</code>, o ambos.</p>
+          <p class="example">
+          <p>El siguiente código muestra un uso correcto del elemento <code>base</code>:</p>
+          <code class="box">&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;This is an example for the &amp;lt;base&amp;gt; element&lt;/title&gt;
+    <strong>&lt;base href=&quot;https://www.example.com/news/index.html&quot;&gt;</strong>
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Visit the &lt;a href=&quot;archives.html&quot;&gt;archives&lt;/a&gt;.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code>
+          </p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-link-element" target="_blank"><code>link</code></a></h3>
+          <p>El elemento <code>link</code> es un elemento de metadatos.</p>
+          <p>El elemento <code>link</code> es usado para ligar documentos a otros recursos.</p>
+          <p>El destino de la liga es deinido por el atributo <code class="atribute">href</code>, el cual debe estar presente y debe contener una URL válida, no vacía. Si el atributo <code class="atribute">href</code> no está presente, entonces el elemento no define una liga.</p>
+          <p>El elemento debe contener un atributo <code data-code-type="attribute">rel</code>, que especifica el tipo de liga.</p>
+          <p class="example">
+          <p>El siguiente código crea dos ligas a la misma página:</p>
+          <code class="box">&lt;link rel=&quot;<strong>author license</strong>&quot; href=&quot;/about&quot;&gt;</code>
+          <p>Las dos ligas creadas por este elemento poseen una semántica que indica que el recurso ligado contiene información acerca del autor de la página, así como la licencia bajo la que se distribuye su contenido.</p>
+          </p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-meta-element" target="_blank"><code>meta</code></a></h3>
+          <p>El elemento <code>meta</code> es un elemento de metadatos.</p>
+          <p>Representa varios aspectos de metadatos que no entran en la categoría, ni pueden ser expresados por los elementos <code data-code-type="element">title</code>, <code data-code-type="element">base</code>, <code data-code-type="element">link</code>, <code data-code-type="element">style</code> o <code data-code-type="element">script</code>.</p>
+          <p>El elemento <code data-code-type="element">meta</code> puede representar metadatos con el atributo <code data-code-type="attribute">name</code>, directivas pragma con el atributo <code data-code-type="attribute">http-equiv</code> y la declaración de codificación de caracteres con el atributo <code data-code-type="attribute">charset</code>.</p>
+          <p class="note">El atributo <code data-code-type="attribute">charset</code> no tiene ningún efecto en los documentos XML, solo está permitido para facilitar la migracion hacia y desde XHTML.</p>
+          <p>No debe haber mas de un elemento <code data-code-type="element">meta</code> con un atributo <code data-code-type="attribute">charset</code> por documento.</p>
+          <p class="example">
+          <p>El siguiente código muestra el uso de un elemento <code data-code-type="element">meta</code>, para declarar palabras clave relacionadas con el sitio:</p>
+          <code class="box">&lt;!doctype html&gt;
+&lt;html lang=&quot;en-GB&quot;&gt;
+  &lt;head&gt;
+    &lt;title&gt;Typefaces on UK motorways&lt;/title&gt;
+    <strong>&lt;meta name=&quot;keywords&quot; content=&quot;british,type face,font,fonts,highway,highways&quot;&gt;</strong>
+  &lt;/head&gt;
+  &lt;body&gt;</code>
+          </p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/document-metadata.html#the-style-element" target="_blank"><code>style</code></a></h3>
+          <p>El elemento <code data-code-type="element">style</code> es un elemento de metadatos.</p>
+          <p>Permite a los autores incrustar información de estilo en sus documentos. Es una de varias formas de aplicar estilos. El elemento no representa contenido para los usuarios.</p>
+          <p>El atributo <code data-code-type="atribute">type</code> especifica el lenguaje de estilo. Si el atributo está presente, debe ser un <em>tipo mime válido</em> que designe un lenguaje de estilos. El valor por defecto en caso de que el atributo no esté presente es "<code data-code-type="attribute">text/css</code>".</p>
+          <p class="example">
+          <p>El siguiente código muestra un ejemplo de un elemento style, con valores que reemplazan el estilo por defecto de a etiqueta <code data-code-type="element">em</code> con texto rojo y sin italicas:</p>
+          <code class="box"><strong>&lt;style&gt;
+      em { font-style: normal; color: red; }
+    &lt;/style&gt;</strong>
+    &lt;p&gt;My &lt;em&gt;favorite&lt;/em&gt; book of all time has &lt;em&gt;got&lt;/em&gt; to be
+    &lt;cite&gt;A Cat’s Life&lt;/cite&gt;. It is a book by P. Rahmel that talks
+    about the &lt;i lang=&quot;la&quot;&gt;Felis Catus&lt;/i&gt; in modern human society.&lt;/p&gt;</code>
+          </p>
+          <p class="demo">
+          <code class="box"><style>
+      .em { font-style: normal; color: red; }
+    </style>
+    <p>My <em class="em">favorite</em> book of all time has <em class="em">got</em> to be
+    <cite>A Cat’s Life</cite>. It is a book by P. Rahmel that talks
+    about the <i lang="la">Felis Catus</i> in modern human society.</p></code></p>
         </section>
       </section>
       <section id="sections">
@@ -269,27 +356,117 @@ o bien:
         <p></p>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-body-element" target="_blank"><code>body</code></a></h3>
+          <p>El elemento <code data-code-type="element">body</code> representa el contenido del documento.</p>
+          <p>En documentos estándares solo debe existir una etiqueta <code data-code-type="element">body</code>.</p>
+          <p>Contiene todos los elementos que no pertenecen a los metadatos.</p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-article-element" target="_blank"><code>article</code></a></h3>
+          <p>El elemento <code data-code-type="element">article</code> representa un composición completa e independiente en un documento, página, aplicación o sitio. Puede ser un artículo de una revista, periodico, escolar etc.</p>
+          <p class="example">
+          <p>El siguiente código es un ejemplo de un elemento <code data-code-type="element">article</code> con contenido semanticamente correcto:</p>
+          <code class="box"><strong>&lt;article&gt;</strong>
+  &lt;h2&gt;&lt;a href=&quot;https://herbert.io&quot;&gt;Short note on wearing shorts&lt;/a&gt;&lt;/h2&gt;
+   &lt;p&gt;Posted on Wednesday, 10 February 2016 by Patrick Lauke.
+   &lt;a href=&quot;https://herbert.io/short-note/#comments&quot;&gt;6 comments&lt;/a&gt;&lt;/p&gt;
+ &lt;p&gt;A fellow traveller posed an interesting question: Why do you wear shorts rather than
+ longs? The person was wearing culottes as the time, so I considered the question equivocal in nature,
+ but I attempted to provide an honest answer despite the dubiousness of the questioner’s dress.&lt;/p&gt;
+ &lt;p&gt;The short answer is that I enjoy wearing shorts, the long answer is...&lt;/p&gt;
+ &lt;p&gt;&lt;a href=&quot;https://herbert.io/short-note/&quot;&gt;Continue reading: Short note on
+ wearing shorts&lt;/a&gt;&lt;/p&gt;
+<strong>&lt;/article&gt;</strong></code>
+          </p>
+          <p class="demo">
+          <code>
+ <article>
+ <h2><a href="https://herbert.io">Short note on wearing shorts</a></h2>
+   <p>Posted on Wednesday, 10 February 2016 by Patrick Lauke.
+   <a href="https://herbert.io/short-note/#comments">6 comments</a></p>
+ <p>A fellow traveller posed an interesting question: Why do you wear shorts rather than
+ longs? The person was wearing culottes as the time, so I considered the question equivocal in nature,
+ but I attempted to provide an honest answer despite the dubiousness of the questioner’s dress.</p>
+ <p>The short answer is that I enjoy wearing shorts, the long answer is...</p>
+ <p><a href="https://herbert.io/short-note/">Continue reading: Short note on
+ wearing shorts</a></p>
+</article></code></p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-section-element" target="_blank"><code>section</code></a></h3>
+          <p>El elemento <code data-code-type="element">section</code> representa una sección de un documento o aplicación. Una sección, en este contexto es una agrupación tematica de contenido. Cada sección debe ser identificada incluyendo al menos un elemento <code data-code-type="element">h1</code>-<code data-code-type="element">h6</code> dentro de su contenido.</p>
+          <p class="note">El elemento <code data-code-type="element">section</code> no es un contenedor generico de contenido. Cuando se desee un contenedor solo para propósitos de estilo se recomienda usar un elemento <code data-code-type="element">div</code>.</p>
         </section>
+        <p class="example">
+        <p>El siguiente código muestra dos secciones, cada una con su propio contenido, pero aun asi relacionadas entre sí:</p>
+<code class="box"><strong>&lt;section&gt;</strong>
+  &lt;h3&gt;Elemento &lt;a href=&quot;https://www.w3.org/TR/html/sections.html#the-nav-element&quot; target=&quot;_blank&quot;&gt;&lt;code&gt;section&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt;
+  &lt;hr /&gt;
+<strong>&lt;/section&gt;</strong>
+<strong>&lt;section&gt;</strong>
+  &lt;h3&gt;Elemento &lt;a href=&quot;https://www.w3.org/TR/html/sections.html#the-nav-element&quot; target=&quot;_blank&quot;&gt;&lt;code&gt;nav&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt;
+  &lt;hr /&gt;
+<strong>&lt;/section&gt;</strong></code></p>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-nav-element" target="_blank"><code>nav</code></a></h3>
+          <p>El elemento <code data-code-type="element">nav</code> representa una sección de una página que contiene ligas a otras páginas o partes dentro de la mísma página: una <em>sección con ligas de navegación</em>.</p>
+          <p class="note">No todos los grupos de ligas de navegación tienen que ir dentro de un elemento <code data-code-type="element">nav</code>, el elemento esta destinado primariamente a bloques de navegacion mayores.</p>
+          <p class="example">
+          <code class="box"><strong>&lt;nav&gt;</strong>
+  &lt;a href=&quot;./index.xhtml&quot;&gt;Home&lt;/a&gt;
+  &lt;a href=&quot;./miku.xhtml&quot;&gt;初音ミク&lt;/a&gt;
+  &lt;a href=&quot;./music.xhtml&quot;&gt;Music&lt;/a&gt;
+  &lt;a href=&quot;./art.xhtml&quot;&gt;Art&lt;/a&gt;
+  &lt;a href=&quot;./links.xhtml&quot;&gt;Links&lt;/a&gt;
+  &lt;a href=&quot;./htmltut.xhtml&quot;&gt;Tutorial HTML&lt;/a&gt;
+<strong>&lt;/nav&gt;</strong></code></p>
         </section>
         <section>
           <h3>Elementos <a href="https://www.w3.org/TR/html/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements" target="_blank"><code>h1, h2, h3, h4, h5</code> y <code>h6</code></a></h3>
+          <p>Los elementos <code data-code-type="element">h#</code> representan encabezados para sus secciones.</p>
+          <p>Estos elementos tienen un rango, dado por el numero en su nombre. El elemento <code data-code-type="element">h1</code> tiene el rango más alto, el elemento <code data-code-type="element">h6</code> tiene el rango mas bajo, y dos elementos con el mismo nombre tienen el mismo rango.</p>
+          <p>Se usa el rango de los encabezados para crear la estructura del documento.</p>
+          <p class="example">
+          <p>El siguiente código muestra un documento con 6 niveles de encabezados:</p>
+          <code class="box">&lt;h1&gt;top level heading&lt;/h1&gt;
+ &lt;section&gt;&lt;h2&gt;2nd level heading&lt;/h2&gt;
+  &lt;section&gt;&lt;h3&gt;3nd level heading&lt;/h3&gt;
+   &lt;section&gt;&lt;h4&gt;4th level heading&lt;/h4&gt;
+    &lt;section&gt;&lt;h5&gt;5th level heading&lt;/h5&gt;
+     &lt;section&gt;&lt;h6&gt;6th level heading&lt;/h6&gt;
+     &lt;/section&gt;
+    &lt;/section&gt;
+ &lt;/section&gt;
+&lt;/section&gt;
+&lt;/section&gt;</code>
+          </p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-header-element" target="_blank"><code>header</code></a></h3>
+          <p>El elemento <code data-code-type="element">header</code> representa contenido introductorio para su ancestro mas cercano de seccionado. Contiene usualmente un grupo de ligas introductorias o ayuda navegacional.</p>
+          <p class="example">
+          <p>El siguiente código muestra un encabezado de ejemplo:</p>
+          <code class="box">&lt;header&gt;
+  &lt;p&gt;Welcome to...&lt;/p&gt;
+  &lt;h1&gt;Voidwars!&lt;/h1&gt;
+&lt;/header&gt;</code></p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-footer-element" target="_blank"><code>footer</code></a></h3>
+          <p>El elemento <code data-code-type="element">footer</code> representa un pie de página para su ancestro mas cercano de seccionado. Usualmente contiene información acerca de la sección, como quien la escribió, información de copyright o ligas a documentos relacionados.</p>
+          <p class="note">La información de contacto pertenece al elemento <code data-code-type="element">address</code>, posiblemente dentro de un elemento <code data-code-type="element">footer</code>.</p>
+          <p class="example">
+          <p>El siguiente código muestra un ejemplo de un elemento <code data-code-type="element">footer</code>:</p>
+          <code class="box">&lt;footer&gt;&amp;#169;2017 &lt;/footer&gt;</code></p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/sections.html#the-address-element" target="_blank"><code>address</code></a></h3>
+          <p>Elemento <code data-code-type="element">address</code> representa la información de contacto de los elementos ancestro mas cercanos de tipo <code data-code-type="element">article</code> o <code data-code-type="element">body</code>, si el elemento <code data-code-type="element">body</code> es el más cercano, entonces la información de contacto aplica al documento entero.</p>
+          <p class="example">
+          <code class="box"><strong>&lt;address&gt;</strong>
+  &lt;A href=&quot;../People/Raggett/&quot;&gt;Dave Raggett&lt;/A&gt;,
+  &lt;A href=&quot;../People/Arnaud/&quot;&gt;Arnaud Le Hors&lt;/A&gt;,
+  contact persons for the &lt;A href=&quot;Activity&quot;&gt;W3C HTML Activity&lt;/A&gt;
+<strong>&lt;/address&gt;</strong></code></p>
         </section>
       </section>
       <section id="grouping">
@@ -297,273 +474,1014 @@ o bien:
         <p></p>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-p-element" target="_blank"><code>p</code></a></h3>
+          <p>El elemento <code data-code-type="element">p</code> representa un párrafo.</p>
+          <p>En HTML un párrafo no es un concepto lógico, sino estructural. Para usar el <em>significado lógico</em> de un párrafo, se recomienda usar el elemento <code data-code-type="element">div</code> en lugar del elemento <code data-code-type="element">p</code>.</p>
+          <div class="note">El elemento <code data-code-type="element">p</code> no debe ser utilizado cuando haya un elemento específico más apropiado.</div>
+          <div class="example">
+          <p>El siguiente código muestra un ejemplo del uso del elemento <code data-code-type="element">p</code>:</p>
+          <code class="box"><strong>&lt;p&gt;</strong>There was once an example from Femley,&lt;br /&gt;
+Whose markup was of dubious quality.&lt;br /&gt;
+The validator complained,&lt;br /&gt;
+So the author was pained,&lt;br /&gt;
+To move the error from the markup to the rhyming.<strong>&lt;/p&gt;</strong></code>
+          </div>
+          <div class="demo"><p>Demostración del código anterior:</p><code><p>There was once an example from Femley,<br />
+Whose markup was of dubious quality.<br />
+The validator complained,<br />
+So the author was pained,<br />
+To move the error from the markup to the rhyming.</p></code></div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-hr-element" target="_blank"><code>hr</code></a></h3>
+          <p>El elemento <code data-code-type="element">hr</code> representa un salto de parrafo temático, es decir un cambio de tema dentro de una sección.</p>
+          <div class="example"><code class="box">&lt;p&gt;Radios use the electromagnetic spectrum in the meter range and
+  longer.&lt;/p&gt;
+  &lt;hr /&gt;
+  &lt;p&gt;Signal flares use the electromagnetic spectrum in the
+  nanometer range.&lt;/p&gt;</code></div>
+          <div class="demo"><code><p>Radios use the electromagnetic spectrum in the meter range and
+  longer.</p>  <hr />  
+  <p>Signal flares use the electromagnetic spectrum in the
+  nanometer range.</p>
+</code></div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-pre-element" target="_blank"><code>pre</code></a></h3>
+          <p>El elemento <code data-code-type="element">pre</code> represeta un bloque de texto pre-formateado, cuya estructura está definida por convenciones tipográficas, en lugar de los elementos.</p>
+          <p>Algunos usos del elemento <code data-code-type="element">pre</code> son:</p>
+          <ul>
+            <li>Incluir un e-mail, con párrafos indicados por saltos de linea, lineas de listas con viñetas</li>
+            <li>Incluir fragmentos de código de computadora, estructurado de acuerdo a las convenciones de su lenguaje.</li>
+            <li>Mostrar arte ASCII</li>
+          </ul>
+          <div class="example">
+          <code class="box">&lt;p&gt;This is the &lt;code&gt;Panel&lt;/code&gt; constructor:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function Panel(element, canClose, closeHandler) {
+  this.element = element;
+  this.canClose = canClose;
+  this.closeHandler = function () { if (closeHandler) closeHandler() };
+}&lt;/code&gt;&lt;/pre&gt;</code></div>
+          <div class="demo">
+          <code><p>This is the <code>Panel</code> constructor:</p>
+<pre><code>function Panel(element, canClose, closeHandler) {
+  this.element = element;
+  this.canClose = canClose;
+  this.closeHandler = function () { if (closeHandler) closeHandler() };
+}</code></pre></code></div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-blockquote-element" target="_blank"><code>blockquote</code></a></h3>
+          <p>El elemento <code data-code-type="element">blockquote</code> representa contenido que es citado de otra fuente, opcionalmente con una cita que debe estar en un elemento <code data-code-type="element">footer</code> o <code data-code-type="element">cite</code>.</p>
+          <div class="example"><code class="box">&lt;figure&gt;
+&lt;blockquote&gt;
+&quot;That monster custom, who all sense doth eat
+Of habit’s devil,&quot; &lt;abbr title=&quot;et cetera&quot;&gt;&amp;c.&lt;/abbr&gt; not in Folio
+&quot;What a falling off was there !
+From me, whose love was of that dignity
+That it went hand in hand even with the vow
+I made to her in marriage, and to decline
+Upon a wretch.&quot;
+&lt;/blockquote&gt;
+&lt;footer&gt;
+— &lt;cite class=&quot;title&quot;&gt;Shakespeare manual&lt;/cite&gt; by &lt;cite class=&quot;author&quot;&gt;Frederick Gard Fleay&lt;/cite&gt;,
+p19 (in Google Books)
+&lt;/footer&gt;
+&lt;/figure&gt;</code></div>
+          <div class="demo">
+          <code><figure>
+<blockquote>
+"That monster custom, who all sense doth eat
+Of habit’s devil," <abbr title="et cetera">&amp;c.</abbr> not in Folio
+
+"What a falling off was there !
+From me, whose love was of that dignity
+That it went hand in hand even with the vow
+I made to her in marriage, and to decline
+Upon a wretch."
+</blockquote>
+<p>
+— <cite class="title">Shakespeare manual</cite> by <cite class="author">Frederick Gard Fleay</cite>,
+p19 (in Google Books)
+</p>
+</figure></code></div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-ol-element" target="_blank"><code>ol</code></a></h3>
+          <p>El elemento <code data-code-type="element">ol</code> representa una lista de elementos intencionalmente ordenados, es decir, cambiar el orden de los elementos cambiaria el significado del contenido.</p>
+          <p>Los elementos de la lista son los elementos <code data-code-type="element">li</code> en orden de árbol.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;I have lived in the following countries (given in the order of when
+I first lived there):&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Switzerland&lt;/li&gt;
+  &lt;li&gt;United Kingdom&lt;/li&gt;
+  &lt;li&gt;United States&lt;/li&gt;
+  &lt;li&gt;Norway&lt;/li&gt;
+&lt;/ol&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>I have lived in the following countries (given in the order of when
+I first lived there):</p>
+<ol>
+  <li>Switzerland</li>
+  <li>United Kingdom</li>
+  <li>United States</li>
+  <li>Norway</li>
+</ol></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-ul-element" target="_blank"><code>ul</code></a></h3>
+          <p>El elemento <code data-code-type="element">ul</code> representa una lsita de elementos, donde el orden de éstos no es importante, es decir, cambiar el orden de los elementos no cambiaria el significado del contenido.</p>
+          <p>Los elementos de la lista son los elementos <code data-code-type="element">li</code> en orden de árbol.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;I have lived in the following countries:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Norway&lt;/li&gt;
+  &lt;li&gt;Switzerland&lt;/li&gt;
+  &lt;li&gt;United Kingdom&lt;/li&gt;
+  &lt;li&gt;United States&lt;/li&gt;
+&lt;/ul&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>I have lived in the following countries:</p>
+<ul>
+  <li>Norway</li>
+  <li>Switzerland</li>
+  <li>United Kingdom</li>
+  <li>United States</li>
+</ul></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-li-element" target="_blank"><code>li</code></a></h3>
+          <p>El elemento <code data-code-type="element">li</code> representa un elemento de una lista. Sus elementos padre pueden ser <code data-code-type="element">ol</code>, <code data-code-type="element">ul</code> o <code data-code-type="element">menu</code>.</p>
+          <div class="example">
+            <code class="box">&lt;figure&gt;
+  &lt;figcaption&gt;The top 10 movies of all time&lt;/figcaption&gt;
+  &lt;ol&gt;
+    &lt;li value=&quot;10&quot;&gt;&lt;cite&gt;Josie and the Pussycats&lt;/cite&gt;, 2001&lt;/li&gt;
+    &lt;li value=&quot;9&quot;&gt;&lt;cite lang=&quot;sh&quot;&gt;Црна мачка, бели мачор&lt;/cite&gt;, 1998&lt;/li&gt;
+    &lt;li value=&quot;8&quot;&gt;&lt;cite&gt;A Bug’s Life&lt;/cite&gt;, 1998&lt;/li&gt;
+    &lt;li value=&quot;7&quot;&gt;&lt;cite&gt;Toy Story&lt;/cite&gt;, 1995&lt;/li&gt;
+    &lt;li value=&quot;6&quot;&gt;&lt;cite&gt;Monsters, Inc&lt;/cite&gt;, 2001&lt;/li&gt;
+    &lt;li value=&quot;5&quot;&gt;&lt;cite&gt;Cars&lt;/cite&gt;, 2006&lt;/li&gt;
+    &lt;li value=&quot;4&quot;&gt;&lt;cite&gt;Toy Story 2&lt;/cite&gt;, 1999&lt;/li&gt;
+    &lt;li value=&quot;3&quot;&gt;&lt;cite&gt;Finding Nemo&lt;/cite&gt;, 2003&lt;/li&gt;
+    &lt;li value=&quot;2&quot;&gt;&lt;cite&gt;The Incredibles&lt;/cite&gt;, 2004&lt;/li&gt;
+    &lt;li value=&quot;1&quot;&gt;&lt;cite&gt;Ratatouille&lt;/cite&gt;, 2007&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/figure&gt;</code>
+          </div>
+          <div class="demo">
+            <code><figure>
+  <figcaption>The top 10 movies of all time</figcaption>
+  <ol>
+    <li value="10"><cite>Josie and the Pussycats</cite>, 2001</li>
+    <li value="9"><cite lang="sh">Црна мачка, бели мачор</cite>, 1998</li>
+    <li value="8"><cite>A Bug’s Life</cite>, 1998</li>
+    <li value="7"><cite>Toy Story</cite>, 1995</li>
+    <li value="6"><cite>Monsters, Inc</cite>, 2001</li>
+    <li value="5"><cite>Cars</cite>, 2006</li>
+    <li value="4"><cite>Toy Story 2</cite>, 1999</li>
+    <li value="3"><cite>Finding Nemo</cite>, 2003</li>
+    <li value="2"><cite>The Incredibles</cite>, 2004</li>
+    <li value="1"><cite>Ratatouille</cite>, 2007</li>
+  </ol>
+</figure></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-dl-element" target="_blank"><code>dl</code></a></h3>
+          <p>El elemento <code data-code-type="element">dl</code> representa una lista de descripción de cero o mas grupos de terminos de descripción. </p>
+          <div class="example">
+            <code class="box">&lt;dl&gt;
+  &lt;dt&gt;Blanco tequila&lt;/dt&gt;
+  &lt;dd&gt;The purest form of the blue agave spirit...&lt;/dd&gt;
+  &lt;dt&gt;Reposado tequila&lt;/dt&gt;
+  &lt;dd&gt;Typically aged in wooden barrels for between two and eleven months...&lt;/dd&gt;
+&lt;/dl&gt;</code>
+          </div>
+          <div class="demo">
+            <code><dl>
+  <dt>Blanco tequila</dt>
+  <dd>The purest form of the blue agave spirit...</dd>
+  <dt>Reposado tequila</dt>
+  <dd>Typically aged in wooden barrels for between two and eleven months...</dd>
+</dl></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-dt-element" target="_blank"><code>dt</code></a></h3>
+          <p>El elemento <code data-code-type="element">dt</code> representa un término, parte de un grupo de término-descripción, en una lista de descripción.</p>
+          <div class="example">
+            <code class="box">&lt;dl&gt;
+  &lt;dt&gt;What is my favorite drink?&lt;/dt&gt;
+  &lt;dd&gt;Tea&lt;/dd&gt;
+  &lt;dt&gt;What is my favorite food?&lt;/dt&gt;
+  &lt;dd&gt;Sushi&lt;/dd&gt;
+  &lt;dt&gt;What is my favourite film?&lt;/dt&gt;
+  &lt;dd&gt;What a Wonderful Life&lt;/dd&gt;
+&lt;/dl&gt;</code>
+          </div>
+          <div class="demo">
+            <code><dl>
+  <dt>What is my favorite drink?</dt>
+  <dd>Tea</dd>
+  <dt>What is my favorite food?</dt>
+  <dd>Sushi</dd>
+  <dt>What is my favourite film?</dt>
+  <dd>What a Wonderful Life</dd>
+</dl></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-dd-element" target="_blank"><code>dd</code></a></h3>
+          <p>El elemento <code data-code-type="element">dd</code> representa una descripción, parte de un grupo de término-descripción, en una lista de descripción.</p>
+          <div class="example">
+            <code class="box">&lt;dl&gt;
+  &lt;dt&gt;37&lt;/dt&gt;
+  &lt;dd&gt;Left&lt;/dd&gt;
+  &lt;dt&gt;38&lt;/dt&gt;
+  &lt;dd&gt;Right&lt;/dd&gt;
+  &lt;dt&gt;39&lt;/dt&gt;
+  &lt;dd&gt;Up&lt;/dd&gt;
+  &lt;dt&gt;40&lt;/dt&gt;
+  &lt;dd&gt;Down&lt;/dd&gt;
+&lt;/dl&gt;</code>
+          </div>
+          <div class="demo">
+            <code><dl>
+  <dt>37</dt>
+  <dd>Left</dd>
+  <dt>38</dt>
+  <dd>Right</dd>
+  <dt>39</dt>
+  <dd>Up</dd>
+  <dt>40</dt>
+  <dd>Down</dd>
+</dl></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-figure-element" target="_blank"><code>figure</code></a></h3>
+          <p>El elemento <code data-code-type="element">figure</code> representa un contenido, opcionalmente con una acotación, que es independiente, y es frecuentemente referenciada como una unidad que forma parte del contenido del documento.</p>
+          <p class="note">Este elemento puede ser usado entonces para anotar imágenes, diagramas, fotos, fragmento de código, etc.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;In &lt;a href=&quot;#l4&quot;&gt;listing 4&lt;/a&gt; we see the primary core interface
+API declaration.&lt;/p&gt;
+&lt;figure id=&quot;l4&quot;&gt;
+  &lt;figcaption&gt;Listing 4. The primary core interface API declaration.&lt;/figcaption&gt;
+  &lt;pre&gt;&lt;code&gt;interface PrimaryCore {
+  boolean verifyDataLine();
+  void sendData(in sequence&amp;lt;byte&gt; data);
+  void initSelfDestruct();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/figure&gt;
+&lt;p&gt;The API is designed to use UTF-8.&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>In <a href="#l4">listing 4</a> we see the primary core interface
+API declaration.</p>
+<figure id="l4">
+  <figcaption>Listing 4. The primary core interface API declaration.</figcaption>
+  <pre><code>interface PrimaryCore {
+  boolean verifyDataLine();
+  void sendData(in sequence&lt;byte> data);
+  void initSelfDestruct();
+}</code></pre>
+</figure>
+<p>The API is designed to use UTF-8.</p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-figcaption-element" target="_blank"><code>figcaption</code></a></h3>
+          <p>El elemento <code data-code-type="element">figcaption</code> representa una leyenda o subtítulo, para el contenido del elemento <code data-code-type="element">figure</code> padre, de existir.</p>
+          <div class="example">
+            <code class="box">&lt;figure&gt;
+  &lt;p&gt;'Twas brillig, and the slithy toves&lt;br /&gt;
+  Did gyre and gimble in the wabe;&lt;br /&gt;
+  All mimsy were the borogoves,&lt;br /&gt;
+  And the mome raths outgrabe.&lt;/p&gt;
+  &lt;figcaption&gt;&lt;cite&gt;Jabberwocky&lt;/cite&gt; (first verse). Lewis Carroll, 1832-98&lt;/figcaption&gt;
+&lt;/figure&gt;</code>
+          </div>
+          <div class="demo">
+            <code><figure>
+  <p>'Twas brillig, and the slithy toves<br />
+  Did gyre and gimble in the wabe;<br />
+  All mimsy were the borogoves,<br />
+  And the mome raths outgrabe.</p>
+  <figcaption><cite>Jabberwocky</cite> (first verse). Lewis Carroll, 1832-98</figcaption>
+</figure></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-div-element" target="_blank"><code>div</code></a></h3>
+          <p>El elemento <code data-code-type="element">div</code> no tiene un significado especifico del todo. Representa a sus elementos hijo. Es usado para marcar semanticas con los atributos <code data-code-type="attribute">title</code>, <code data-code-type="attribute">class</code> y <code data-code-type="attribute">lang</code>, en un grupo de elementos consecutivos.</p>
+          <div class="example">
+            <code class="box">&lt;article lang=&quot;en-US&quot;&gt;
+  &lt;h2&gt;My use of language and my cats&lt;/h2&gt;
+  &lt;p&gt;My cat’s behavior hasn’t changed much since her absence, except
+  that she plays her new physique to the neighbors regularly, in an
+  attempt to get pets.&lt;/p&gt;
+  &lt;div lang=&quot;en-GB&quot;&gt;
+  &lt;p&gt;My other cat, colored black and white, is a sweetie. He followed
+  us to the pool today, walking down the pavement with us. Yesterday
+  he apparently visited our neighbours. I wonder if he recognizes that
+  their flat is a mirror image of ours.&lt;/p&gt;
+  &lt;p&gt;Hm, I just noticed that in the last paragraph I used British
+  English. But I’m supposed to write in American English. So I
+  shouldn’t say &quot;pavement&quot; or &quot;flat&quot; or &quot;color&quot;...&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;p&gt;I should say &quot;sidewalk&quot; and &quot;apartment&quot; and &quot;color&quot;!&lt;/p&gt;
+&lt;/article&gt;</code>
+          </div>
+          <div class="demo">
+            <code><article lang="en-US">
+  <h2>My use of language and my cats</h2>
+  <p>My cat’s behavior hasn’t changed much since her absence, except
+  that she plays her new physique to the neighbors regularly, in an
+  attempt to get pets.</p>
+  <div lang="en-GB">
+  <p>My other cat, colored black and white, is a sweetie. He followed
+  us to the pool today, walking down the pavement with us. Yesterday
+  he apparently visited our neighbours. I wonder if he recognizes that
+  their flat is a mirror image of ours.</p>
+  <p>Hm, I just noticed that in the last paragraph I used British
+  English. But I’m supposed to write in American English. So I
+  shouldn’t say "pavement" or "flat" or "color"...</p>
+  </div>
+  <p>I should say "sidewalk" and "apartment" and "color"!</p>
+</article></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/grouping-content.html#the-main-element" target="_blank"><code>main</code></a></h3>
+          <p>El elemento <code data-code-type="element">main</code> representa el contenido principal de el elemento <code data-code-type="element">body</code> del documento o aplicación.</p>
+          <div class="example">
+            <code class="box">&lt;!-- other content --&gt;
+&lt;main&gt;
+  &lt;h1&gt;Skateboards&lt;/h1&gt;
+  &lt;p&gt;The skateboard is the way cool kids get around&lt;/p&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Longboards&lt;/h2&gt;
+    &lt;p&gt;Longboards are a type of skateboard with a longer
+    wheelbase and larger, softer wheels.&lt;/p&gt;
+  &lt;/article&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Electric Skateboards&lt;/h2&gt;
+    &lt;p&gt;These no longer require the propelling of the skateboard
+    by means of the feet; rather an electric motor propels the board,
+    fed by an electric battery.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+&lt;!-- other content --&gt;</code>
+          </div>
+          <div class="demo">
+            <code><!-- other content -->
+<div>
+  <h1>Skateboards</h1>
+  <p>The skateboard is the way cool kids get around</p>
+  <article>
+    <h2>Longboards</h2>
+    <p>Longboards are a type of skateboard with a longer
+    wheelbase and larger, softer wheels.</p>
+  </article>
+  <article>
+    <h2>Electric Skateboards</h2>
+    <p>These no longer require the propelling of the skateboard
+    by means of the feet; rather an electric motor propels the board,
+    fed by an electric battery.</p>
+  </article>
+</div>
+<!-- other content --></code>
+          </div>
         </section>
       </section>
       <section id="textSemantics">
         <h2>Semántica de texto</h2>
         <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-a-element" target="_blank"><code>a</code></a></h3>
+          <h3>Elemento <a href="http://www.w3.org/TR/html/textlevel-semantics.html#the-a-element" target="_blank"><code>a</code></a></h3>
+          <p>Si el elemento <code data-code-type="element">a</code> tiene un atributo <code data-code-type="attribute">href</code>, entonces representa una hiperliga, etiquetado por su contenido.</p>
+          <p>Si el elemento <code data-code-type="element">a</code> no tiene un atributo <code data-code-type="attribute">href</code>, entonces representa un marcador de posición en el cual una liga puede ser insertada.</p>
+          <div class="example">
+            <code class="box">&lt;ul&gt;
+    &lt;li&gt; &lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt; &lt;/li&gt;
+    &lt;li&gt; &lt;a href=&quot;/news&quot;&gt;News&lt;/a&gt; &lt;/li&gt;
+    &lt;li&gt; &lt;a&gt;Examples&lt;/a&gt; &lt;/li&gt;
+    &lt;li&gt; &lt;a href=&quot;/legal&quot;&gt;Legal&lt;/a&gt; &lt;/li&gt;
+  &lt;/ul&gt;</code>
+          </div>
+          <div class="demo">
+            <code><ul>
+    <li> <a href="/">Home</a> </li>
+    <li> <a href="/news">News</a> </li>
+    <li> <a>Examples</a> </li>
+    <li> <a href="/legal">Legal</a> </li>
+  </ul>
+</code>
+          </div>
         </section>
         <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-em-element" target="_blank"><code>em</code></a></h3>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/textlevel-semantics.html#the-em-element" target="_blank"><code>em</code></a></h3>
+          <p>El elemento <code data-code-type="element">em</code> representa énfasis remarcado sobre su contenido.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;Cats are &lt;em&gt;cute&lt;/em&gt; animals.&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>Cats are <em>cute</em> animals.</p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-strong-element" target="_blank"><code>strong</code></a></h3>
+          <p>El elemento <code data-code-type="element">strong</code> representa una importancia muy fuerte, urgente, o muy serio para su contenido.</p>
+          <p class="note"><strong>Importancia:</strong> El elemento <code data-code-type="element">strong</code> puede ser usado en un encabezado, leyenda, o subtítulo, </p>
+          <div class="example">
+            <code class="box">&lt;h1&gt;Chapter 1: &lt;strong&gt;The Praxis&lt;/strong&gt;&lt;/h1&gt;</code>
+          </div>
+          <div class="demo">
+            <code><h1>Chapter 1: <strong>The Praxis</strong></h1></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-small-element" target="_blank"><code>small</code></a></h3>
+          <p>El elemento <code data-code-type="element">small</code> representa comentarios ajenos, como las letras pequeñas.</p>
+          <div class="example">
+            <code class="box">&lt;dl&gt;
+  &lt;dt&gt;Single room&lt;/dt&gt;
+  &lt;dd&gt;199 € &lt;small&gt;breakfast included, VAT not included&lt;/small&gt;&lt;/dd&gt;
+  &lt;dt&gt;Double room&lt;/dt&gt;
+  &lt;dd&gt;239 € &lt;small&gt;breakfast included, VAT not included&lt;/small&gt;&lt;/dd&gt;
+&lt;/dl&gt;</code>
+          </div>
+          <div class="demo">
+            <code><dl>
+  <dt>Single room</dt>
+  <dd>199 € <small>breakfast included, VAT not included</small></dd>
+  <dt>Double room</dt>
+  <dd>239 € <small>breakfast included, VAT not included</small></dd>
+</dl></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-s-element" target="_blank"><code>s</code></a></h3>
+          <p>El elemento <code data-code-type="element">s</code> representa contenido que ya no es relevante o verdadero.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;Buy our Iced Tea and Lemonade!&lt;/p&gt;
+&lt;p&gt;&lt;s&gt;Recommended retail price: $3.99 per bottle&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Now selling for just $2.99 a bottle!&lt;/strong&gt;&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>Buy our Iced Tea and Lemonade!</p>
+<p><s>Recommended retail price: $3.99 per bottle</s></p>
+<p><strong>Now selling for just $2.99 a bottle!</strong></p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-cite-element" target="_blank"><code>cite</code></a></h3>
+          <p>El elemento <code data-code-type="element">cite</code> representa referencias a una obra. Debe incluir el titulo de la obra y el nombre del autor.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;In the words of &lt;cite&gt;Charles Bukowski&lt;/cite&gt; -
+&lt;q&gt;An intellectual says a simple thing in a hard way. An artist says a hard thing in a simple way.&lt;/q&gt;&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>In the words of <cite>Charles Bukowski</cite> -
+<q>An intellectual says a simple thing in a hard way. An artist says a hard thing in a simple way.</q></p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-q-element" target="_blank"><code>q</code></a></h3>
+          <p>El elemento <code data-code-type="element">q</code> representa una frase citada de otra fuente.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;The man said &lt;q&gt;Things that are impossible just take
+longer&lt;/q&gt;. I disagreed with him.&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>The man said <q>Things that are impossible just take
+longer</q>. I disagreed with him.</p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-dfn-element" target="_blank"><code>dfn</code></a></h3>
+          <p>El elemento <code data-code-type="element">dfn</code> representa la definición de un término. </p>
+          <div class="example">
+            <code class="box">&lt;p&gt;The &lt;dfn&gt;&lt;abbr title=&quot;Garage Door Opener&quot;&gt;GDO&lt;/abbr&gt;&lt;/dfn&gt;
+is a device that allows off-world teams to open the iris.&lt;/p&gt;
+&lt;!-- ... later in the document: --&gt;
+&lt;p&gt;Teal’c activated his &lt;abbr title=&quot;Garage Door Opener&quot;&gt;GDO&lt;/abbr&gt;
+and so Hammond ordered the iris to be opened.&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>The <dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>
+is a device that allows off-world teams to open the iris.</p>
+<!-- ... later in the document: -->
+<p>Teal’c activated his <abbr title="Garage Door Opener">GDO</abbr>
+and so Hammond ordered the iris to be opened.</p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-abbr-element" target="_blank"><code>abbr</code></a></h3>
+          <p>El elemento <code data-code-type="element">abbr</code> representa una abreviación o acrónimo.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;The &lt;dfn id=&quot;whatwg&quot;&gt;&lt;abbr title=&quot;Web Hypertext Application Technology Working Group&quot;&gt;WHATWG&lt;/abbr&gt;&lt;/dfn&gt;
+is a loose unofficial collaboration of Web browser manufacturers and
+interested parties who wish to develop new technologies designed to
+allow authors to write and deploy Applications over the World Wide
+Web.&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>The <dfn id="whatwg"><abbr title="Web Hypertext Application Technology Working Group">WHATWG</abbr></dfn>
+is a loose unofficial collaboration of Web browser manufacturers and
+interested parties who wish to develop new technologies designed to
+allow authors to write and deploy Applications over the World Wide
+Web.</p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-data-element" target="_blank"><code>data</code></a></h3>
+          <p>El elemento <code data-code-type="element">data</code> representa su contenido, junto con una forma legible por las máquinas de ese contenido en el atributo <code data-code-type="attribute">value</code>.</p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-time-element" target="_blank"><code>time</code></a></h3>
+          <p>El elemento <code data-code-type="element">time</code> representa su contenido, junto con una forma legible por las máquinas de ese contenido en el atributo <code data-code-type="attribute">datetime</code>.</p>
+          <div class="example">
+            <code class="box">&lt;time&gt;2011-11-18&lt;/time&gt;</code>
+          </div>
+          <div class="demo">
+            <code><time>2011-11-18</time></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-code-element" target="_blank"><code>code</code></a></h3>
+          <p>El elemento <code data-code-type="element">code</code> representa un fragmento de código de computadora.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;The &lt;code&gt;code&lt;/code&gt; element represents a fragment of computer
+code.&lt;/p&gt;
+
+&lt;p&gt;When you call the &lt;code&gt;activate()&lt;/code&gt; method on the
+&lt;code&gt;robotSnowman&lt;/code&gt; object, the eyes glow.&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>The <code>code</code> element represents a fragment of computer
+code.</p>
+
+<p>When you call the <code>activate()</code> method on the
+<code>robotSnowman</code> object, the eyes glow.</p>
+</code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-var-element" target="_blank"><code>var</code></a></h3>
+          <p>El elemento <code data-code-type="element">var</code> representa una variable, esto puede ser en una epresion matemática o código de computadora.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;If there are &lt;var&gt;n&lt;/var&gt; pipes leading to the ice
+cream factory then I expect at &lt;em&gt;least&lt;/em&gt; &lt;var&gt;n&lt;/var&gt;
+flavors of ice cream to be available for purchase!&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>If there are <var>n</var> pipes leading to the ice
+cream factory then I expect at <em>least</em> <var>n</var>
+flavors of ice cream to be available for purchase!</p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-samp-element" target="_blank"><code>samp</code></a></h3>
+          <p>El elemento <code data-code-type="element">samp</code> representa una muestra o cita de la salida de un programa o sistema.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;The computer said &lt;samp&gt;Too much cheese in tray
+two&lt;/samp&gt; but I didn’t know what that meant.&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>The computer said <samp>Too much cheese in tray
+two</samp> but I didn’t know what that meant.</p></code>
+          </div>
         </section>
         <section>
           <h3>Elementos <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-sub-and-sup-element" target="_blank"><code>sub</code> y <code>sup</code></a></h3>
+          <p>El elemento <code data-code-type="element">sub</code> representa un subindice.</p>
+          <p>El elemento <code data-code-type="element">sup</code> representa un superindice.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;The most beautiful women are
+&lt;span lang=&quot;fr&quot;&gt;&lt;abbr&gt;M&lt;sup&gt;lle&lt;/sup&gt;&lt;/abbr&gt; Gwendoline&lt;/span&gt; and
+&lt;span lang=&quot;fr&quot;&gt;&lt;abbr&gt;M&lt;sup&gt;me&lt;/sup&gt;&lt;/abbr&gt; Denise&lt;/span&gt;.&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>The most beautiful women are
+<span lang="fr"><abbr>M<sup>lle</sup></abbr> Gwendoline</span> and
+<span lang="fr"><abbr>M<sup>me</sup></abbr> Denise</span>.</p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-i-element" target="_blank"><code>i</code></a></h3>
+          <p>El elemento <code data-code-type="element">i</code> representa una porción de texto en una voz, o ánimo alternativo. </p>
+          <div class="example">
+            <code class="box">&lt;p&gt;The &lt;i class=&quot;taxonomy&quot;&gt;Felis silvestris catus&lt;/i&gt; is cute.&lt;/p&gt;
+&lt;p&gt;The term &lt;i&gt;prose content&lt;/i&gt; is defined above.&lt;/p&gt;
+&lt;p&gt;There is a certain &lt;i lang=&quot;fr&quot;&gt;je ne sais quoi&lt;/i&gt; in the air.&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>The <i class="taxonomy">Felis silvestris catus</i> is cute.</p>
+<p>The term <i>prose content</i> is defined above.</p>
+<p>There is a certain <i lang="fr">je ne sais quoi</i> in the air.</p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-b-element" target="_blank"><code>b</code></a></h3>
+          <p>El elemento <code data-code-type="element">b</code> representa una porción de texto en el cual la atencion es dirigida, para expresar importancia extra.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;The &lt;b&gt;frobonitor&lt;/b&gt; and &lt;b&gt;barbinator&lt;/b&gt; components are fried.&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>The <b>frobonitor</b> and <b>barbinator</b> components are fried.</p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-u-element" target="_blank"><code>u</code></a></h3>
+          <p>El elemento <code data-code-type="element">u</code> representa una porcion de texto desarticulado, no correcto.</p>
+          <div class="example">
+            <code class="box">&lt;u&gt;Misspelled text&lt;/u&gt;</code>
+          </div>
+          <div class="demo">
+            <code><u>Misspelled text</u></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-mark-element" target="_blank"><code>mark</code></a></h3>
+          <p>El elemento <code data-code-type="element">mark</code> representa una porción de texto marcado o sobresaltado para propósitos de referencia.</p>
+          <div class="example">
+            <code class="box">&lt;p lang=&quot;en-US&quot;&gt;Consider the following quote:&lt;/p&gt;
+&lt;blockquote lang=&quot;en-GB&quot;&gt;
+  &lt;p&gt;Look around and you will find, no-one’s really
+  &lt;mark&gt;colour&lt;/mark&gt; blind.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p lang=&quot;en-US&quot;&gt;As we can tell from the &lt;em&gt;spelling&lt;/em&gt; of the word,
+the person writing this quote is clearly not American.&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p lang="en-US">Consider the following quote:</p>
+<blockquote lang="en-GB">
+  <p>Look around and you will find, no-one’s really
+  <mark>colour</mark> blind.</p>
+</blockquote>
+<p lang="en-US">As we can tell from the <em>spelling</em> of the word,
+the person writing this quote is clearly not American.</p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-ruby-element" target="_blank"><code>ruby</code></a></h3>
+          <p>El elemento <code data-code-type="element">ruby</code> representa una o mas porciones de texto para ser marcadas con anotaciones ruby. Usado principalmente para tipografia asiatica, para mostrar su pronunciación.</p>
+          <div class="example">
+            <code class="box">&lt;ruby&gt;&lt;rb&gt;初音&lt;/rb&gt;&lt;rt&gt;はつね&lt;/rt&gt;&lt;/ruby&gt;&lt;ruby&gt;&lt;rb&gt;ミク&lt;/rb&gt;&lt;rt&gt;みく&lt;/rt&gt;&lt;/ruby&gt;</code>
+          </div>
+          <div class="demo">
+            <code><ruby><rb>初音</rb><rt>はつね</rt></ruby><ruby><rb>ミク</rb><rt>みく</rt></ruby></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-rb-element" target="_blank"><code>rb</code></a></h3>
+          <p>El elemento <code data-code-type="element">rb</code> marca la base del componente de texto de una anotacion ruby.</p>
+          <div class="example">
+            <code class="box">&lt;ruby&gt;&lt;rb&gt;初音&lt;/rb&gt;&lt;rt&gt;はつね&lt;/rt&gt;&lt;/ruby&gt;&lt;ruby&gt;&lt;rb&gt;ミク&lt;/rb&gt;&lt;rt&gt;みく&lt;/rt&gt;&lt;/ruby&gt;</code>
+          </div>
+          <div class="demo">
+            <code><ruby><rb>初音</rb><rt>はつね</rt></ruby><ruby><rb>ミク</rb><rt>みく</rt></ruby></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-rt-element" target="_blank"><code>rt</code></a></h3>
+          <p>El elemento <code data-code-type="element">rt</code> marca el componente de texto ruby de una anotación ruby.</p>
+          <div class="example">
+            <code class="box">&lt;ruby&gt;&lt;rb&gt;初音&lt;/rb&gt;&lt;rt&gt;はつね&lt;/rt&gt;&lt;/ruby&gt;&lt;ruby&gt;&lt;rb&gt;ミク&lt;/rb&gt;&lt;rt&gt;みく&lt;/rt&gt;&lt;/ruby&gt;</code>
+          </div>
+          <div class="demo">
+            <code><ruby><rb>初音</rb><rt>はつね</rt></ruby><ruby><rb>ミク</rb><rt>みく</rt></ruby></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-rtc-element" target="_blank"><code>rtc</code></a></h3>
+          <p>El elemento <code data-code-type="element">rtc</code> marca un contenedor de texto ruby, para componentes de texto ruby.</p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-rp-element" target="_blank"><code>rp</code></a></h3>
+          <p>El elemento <code data-code-type="element">rp</code> es usado para proveer un método alternativo para los navegadores que no soporten las anotaciones ruby.</p>
+          <div class="example">
+            <code class="box">&lt;ruby&gt;&lt;rp&gt;Hatsune Miku&lt;/rp&gt;&lt;rb&gt;初音&lt;/rb&gt;&lt;rt&gt;はつね&lt;/rt&gt;&lt;/ruby&gt;&lt;ruby&gt;&lt;rb&gt;ミク&lt;/rb&gt;&lt;rt&gt;みく&lt;/rt&gt;&lt;/ruby&gt;</code>
+          </div>
+          <div class="demo">
+            <code><ruby><rp>Hatsune Miku</rp><rb>初音</rb><rt>はつね</rt></ruby><ruby><rb>ミク</rb><rt>みく</rt></ruby></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-bdi-element" target="_blank"><code>bdi</code></a></h3>
+          <p>El elemento <code data-code-type="element">bdi</code> representa una porción de texto que debe ser aislada de su entorno, para el formateo de texto bidireccional.</p>
+          <div class="example">
+            <code class="box">&lt;ul&gt;
+  &lt;li&gt;User &lt;bdi&gt;jcranmer&lt;/bdi&gt;: 12 posts.&lt;/li&gt;
+  &lt;li&gt;User &lt;bdi&gt;hober&lt;/bdi&gt;: 5 posts.&lt;/li&gt;
+  &lt;li&gt;User &lt;bdi&gt;إيان&lt;/bdi&gt;: 3 posts.&lt;/li&gt;
+&lt;/ul&gt;</code>
+          </div>
+          <div class="demo">
+            <code><ul>
+  <li>User <bdi>jcranmer</bdi>: 12 posts.</li>
+  <li>User <bdi>hober</bdi>: 5 posts.</li>
+  <li>User <bdi>إيان</bdi>: 3 posts.</li>
+</ul></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-bdo-element" target="_blank"><code>bdo</code></a></h3>
+          <p>El elemento <code data-code-type="element">bdo</code> representa direccionalidad de texto explicito, permite anular el algoritmo bidireccional Unicode.</p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-span-element" target="_blank"><code>span</code></a></h3>
+          <p>El elemento <code data-code-type="element">span</code> no significa nada por si solo, pero puede ser util con los atributos globales class lang o dir. Representa a sus elementos hijo.</p>
+          <div class="example">
+            <code class="box">&lt;span class=&quot;red&quot;&gt;Red text&lt;/span&gt;</code>
+          </div>
+          <div class="demo">
+            <code><span class="red">Red text</span></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-br-element" target="_blank"><code>br</code></a></h3>
+          <p>El elemento <code data-code-type="element">br</code> representa un salto de linea.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;P. Sherman&lt;br /&gt;
+42 Wallaby Way&lt;br /&gt;
+Sydney&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>P. Sherman<br />
+42 Wallaby Way<br />
+Sydney</p></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/text-level-semantics.html#the-wbr-element" target="_blank"><code>wbr</code></a></h3>
+          <p>El elemento <code data-code-type="element">wbr</code> representa una oportunidad de salto de linea.</p>
+          <div class="example">
+            <code class="box">&lt;p&gt;So then he pointed at the tiger and screamed
+&quot;there&lt;wbr /&gt;is&lt;wbr /&gt;no&lt;wbr /&gt;way&lt;wbr /&gt;you&lt;wbr /&gt;are&lt;wbr /&gt;ever&lt;wbr /&gt;going&lt;wbr /&gt;to&lt;wbr /&gt;catch&lt;wbr /&gt;me&quot;!&lt;/p&gt;</code>
+          </div>
+          <div class="demo">
+            <code><p>So then he pointed at the tiger and screamed
+"there<wbr />is<wbr />no<wbr />way<wbr />you<wbr />are<wbr />ever<wbr />going<wbr />to<wbr />catch<wbr />me"!</p></code>
+          </div>
         </section>
       </section>
       <section id="editing">
         <h2>Edición</h2>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/edits.html#the-ins-element" target="_blank"><code>ins</code></a></h3>
+          <p>El elemento <code data-code-type="element">ins</code> representa una adición al documento.</p>
+          <div class="example">
+            <code class="box">&lt;aside&gt;
+  &lt;ins&gt;
+  &lt;p&gt; I like fruit. &lt;/p&gt;
+  &lt;/ins&gt;
+&lt;/aside&gt;</code>
+          </div>
+          <div class="demo">
+            <code><aside>
+  <ins>
+  <p> I like fruit. </p>
+  </ins>
+</aside></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/edits.html#the-del-element" target="_blank"><code>del</code></a></h3>
+          <p>El elemento <code data-code-type="element">del</code> representa contenido removido del documento.</p>
+          <div class="example">
+            <code class="box">&lt;h1&gt;To Do&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Empty the dishwasher&lt;/li&gt;
+  &lt;li&gt;&lt;del datetime=&quot;2009-10-11T01:25-07:00&quot;&gt;Watch Walter Lewin’s lectures&lt;/del&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;del datetime=&quot;2009-10-10T23:38-07:00&quot;&gt;Download more tracks&lt;/del&gt;&lt;/li&gt;
+  &lt;li&gt;Buy a printer&lt;/li&gt;
+&lt;/ul&gt;</code>
+          </div>
+          <div class="demo">
+            <code><h1>To Do</h1>
+<ul>
+  <li>Empty the dishwasher</li>
+  <li><del datetime="2009-10-11T01:25-07:00">Watch Walter Lewin’s lectures</del></li>
+  <li><del datetime="2009-10-10T23:38-07:00">Download more tracks</del></li>
+  <li>Buy a printer</li>
+</ul></code>
+          </div>
         </section>
       </section>
       <section id="embedded">
         <h2>Contenido embebido</h2>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-img-element" target="_blank"><code>img</code></a></h3>
+          <p>El elemento <code data-code-type="element">img</code> representa una imagen y su contenido alternativo.</p>
+          <div class="example">
+            <code class="box">&lt;img src=&quot;./images/inucurry.jpg&quot; width=&quot;200px&quot; /&gt;</code>
+          </div>
+          <div class="demo">
+            <code><img src="./images/inucurry.jpg" width="200px" /></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-iframe-element" target="_blank"><code>iframe</code></a></h3>
+          <p>El elemento <code data-code-type="element">iframe</code> representa un contexto de navegación anidado.</p>
+          <div class="example">
+            <code class="box">&lt;iframe sandbox=&quot;sandbox&quot; srcdoc=&quot;&lt;p&gt;did you get a cover picture yet?&quot;&gt;&lt;/iframe&gt;</code>
+          </div>
+          <div class="demo">
+            <code><iframe sandbox="sandbox" srcdoc="&lt;p&gt;did you get a cover picture yet?&lt;/p&gt;"></iframe></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-embed-element" target="_blank"><code>embed</code></a></h3>
+          <p>El elemento <code data-code-type="element">embed</code> provee un punto de integración para una aplicacion externa o contenido interactivo.</p>
+          <div class="example">
+            <code class="box">&lt;embed src=&quot;catgame.swf&quot; /&gt;</code>
+          </div>
+          <div class="demo">
+            <code><embed src="catgame.swf" /></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-object-element" target="_blank"><code>object</code></a></h3>
+          <p>El elemento <code data-code-type="element">object</code> representa contenido externo.</p>
+          <div class="example">
+            <code class="box">&lt;object data=&quot;https://www.youtube.com/embed/vRpbtf8_7XM&quot; width=&quot;200px&quot;&gt;&lt;/object&gt;</code>
+          </div>
+          <div class="demo">
+            <code><object data="https://www.youtube.com/embed/vRpbtf8_7XM" width="200px"></object></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-param-element" target="_blank"><code>param</code></a></h3>
+          <p>El elemento <code data-code-type="element">param</code> define parametros para plugins invocados por elementos object.</p>
+          <div class="example">
+            <code class="box">&lt;object type=&quot;application/vnd.o3d.auto&quot;&gt;
+      &lt;param name=&quot;o3d_features&quot; value=&quot;FloatingPointTextures&quot;&gt;&lt;/object&gt;</code>
+          </div>
+          <div class="demo">
+            <code><object type="application/vnd.o3d.auto">
+      <param name="o3d_features" value="FloatingPointTextures" /></object></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-video-element" target="_blank"><code>video</code></a></h3>
+          <p>El elemento <code data-code-type="element">video</code> es usado para reproducir videos o archivos de audio con subtítulos.</p>
+          <div class="example">
+            <code class="box">&lt;video src=&quot;tgif.vid&quot; autoplay=&quot;autoplay&quot; controls=&quot;controls&quot; onerror=&quot;failed(event)&quot;&gt;&lt;/video&gt;</code>
+          </div>
+          <div class="demo">
+            <code><video src="tgif.vid" autoplay="autoplay" controls="controls" onerror="failed(event)"></video></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-source-element" target="_blank"><code>source</code></a></h3>
+          <p>El elemento <code data-code-type="element">source</code> permite especificar multiples recursos de multimedios para los elementos de medios.</p>
+          <div class="example">
+            <code class="box">&lt;source src=&quot;video.mp4&quot; type=&quot;video/mp4; codecs='avc1.42E01E, mp4a.40.2'&quot; /&gt;</code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-track-element" target="_blank"><code>track</code></a></h3>
+          <p>El elemento <code data-code-type="element">track</code> permite especificar recursos externos de texto para los elementos de multimedios.</p>
+          <div class="example">
+            <code class="box">&lt;video src=&quot;brave.webm&quot;&gt;
+  &lt;track kind=&quot;subtitles&quot; src=&quot;brave.en.vtt&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+  &lt;track kind=&quot;captions&quot; src=&quot;brave.en.hoh.vtt&quot; srclang=&quot;en&quot; label=&quot;English for the Hard of Hearing&quot; /&gt;
+  &lt;track kind=&quot;subtitles&quot; src=&quot;brave.fr.vtt&quot; srclang=&quot;fr&quot; lang=&quot;fr&quot; label=&quot;Français&quot; /&gt;
+  &lt;track kind=&quot;subtitles&quot; src=&quot;brave.de.vtt&quot; srclang=&quot;de&quot; lang=&quot;de&quot; label=&quot;Deutsch&quot; /&gt;
+&lt;/video&gt;</code>
+          </div>
+          <div class="demo">
+            <code><video src="brave.webm">
+  <track kind="subtitles" src="brave.en.vtt" srclang="en" label="English" />
+  <track kind="captions" src="brave.en.hoh.vtt" srclang="en" label="English for the Hard of Hearing" />
+  <track kind="subtitles" src="brave.fr.vtt" srclang="fr" lang="fr" label="Français" />
+  <track kind="subtitles" src="brave.de.vtt" srclang="de" lang="de" label="Deutsch" />
+</video></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-map-element" target="_blank"><code>map</code></a></h3>
+          <p>El elemento <code data-code-type="element">map</code> en conjunción con un elemento img, define un mapa de imagen. Representa a sus elementos hijo.</p>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/embedded-content-0.html#the-area-element" target="_blank"><code>area</code></a></h3>
+          <p>El elemento <code data-code-type="element">area</code> representa una liga hacia un image map.</p>
+          <div class="example">
+            <code class="box">&lt;area shape=rect coords=&quot;50,50,100,100&quot; /&gt; </code>
+          </div>
         </section>
       </section>
       <section id ="tabular">
         <h2>Tablas</h2>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-table-element" target="_blank"><code>table</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-caption-element" target="_blank"><code>caption</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-colgroup-element" target="_blank"><code>colgroup</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-col-element" target="_blank"><code>col</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-tbody-element" target="_blank"><code>tbody</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-thead-element" target="_blank"><code>thead</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-tfoot-element" target="_blank"><code>tfoot</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-tr-element" target="_blank"><code>tr</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-td-element" target="_blank"><code>td</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/tabular-data.html#the-th-element" target="_blank"><code>th</code></a></h3>
+          <p>El elemento <code data-code-type="element">table</code> representa datos con mas de una dimensión, en la forma de una tabla.</p>
+          <div class="example">
+            <code class="box">&lt;table&gt;&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</code>
+          </div>
+          <div class="demo">
+            <code><table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table></code>
+          </div>
         </section>
       </section>
       <section id="forms">
         <h2>Formularios</h2>
         <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-form-element" target="_blank"><code>form</code></a></h3>
+          <h3>Elemento <a href="https://www.w3.org/TR/html/sec-forms.html#the-form-element" target="_blank"><code>form</code></a></h3>
+          <p>El elemento <code data-code-type="element">form</code> representa una coleccion de elementos asociados, de los cuales pueden representar contenido editable, para ser enviado a un servidor para ser procesados.</p>
+          <div class="example">
+            <code class="box">&lt;form action=&quot;https://www.google.com/search&quot; method=&quot;get&quot;&gt;
+  &lt;label&gt;Google: &lt;input type=&quot;search&quot; name=&quot;q&quot; /&gt;&lt;/label&gt; &lt;input type=&quot;submit&quot; value=&quot;Search...&quot; /&gt;
+&lt;/form&gt;
+&lt;form action=&quot;https://www.bing.com/search&quot; method=&quot;get&quot;&gt;
+  &lt;label&gt;Bing: &lt;input type=&quot;search&quot; name=&quot;q&quot; /&gt;&lt;/label&gt; &lt;input type=&quot;submit&quot; value=&quot;Search...&quot; /&gt;
+&lt;/form&gt;</code>
+          </div>
+          <div class="demo">
+            <code><form action="https://www.google.com/search" method="get">
+  <label>Google: <input type="search" name="q" /></label> <input type="submit" value="Search..." />
+</form>
+<form action="https://www.bing.com/search" method="get">
+  <label>Bing: <input type="search" name="q" /></label> <input type="submit" value="Search..." />
+</form></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-label-element" target="_blank"><code>label</code></a></h3>
+          <p>El elemento <code data-code-type="element">label</code> representa una leyenda en una interfaz de usuario.</p>
+          <div class="example">
+            <code class="box">&lt;label for=&quot;name&quot;&gt;Customer name: &lt;/label&gt;</code>
+          </div>
+          <div class="demo">
+            <code><label for="name">Customer name: </label></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-input-element" target="_blank"><code>input</code></a></h3>
+          <p>El elemento <code data-code-type="element">input</code> representa un campo editable de datos.</p>
+          <div class="example">
+            <code class="box">&lt;input type=&quot;search&quot; name=&quot;q&quot; /&gt;</code>
+          </div>
+          <div class="demo">
+            <code><input type="search" name="q" /></code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-button-element" target="_blank"><code>button</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-select-element" target="_blank"><code>select</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-datalist-element" target="_blank"><code>datalist</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-optgroup-element" target="_blank"><code>optgroup</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-option-element" target="_blank"><code>option</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-textarea-element" target="_blank"><code>textarea</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-keygen-element" target="_blank"><code>keygen</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-output-element" target="_blank"><code>output</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-progress-element" target="_blank"><code>progress</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-meter-element" target="_blank"><code>meter</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-fieldset-element" target="_blank"><code>fieldset</code></a></h3>
-        </section>
-        <section>
-          <h3>Elemento <a href="https://www.w3.org/TR/html/forms.html#the-leyend-element" target="_blank"><code>leyend</code></a></h3>
+          <p>El elemento <code data-code-type="element">button</code> representa un botón.</p>
+          <div class="example">
+            <code class="box">&lt;button type=&quot;button&quot;&gt;Show hint&lt;/button&gt;</code>
+          </div>
+          <div class="demo">
+            <code><button type="button">Show hint</button></code>
+          </div>
         </section>
       </section>
       <section id="scripting">
         <h2>Scripting</h2>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/scripting-1.html#the-script-element" target="_blank"><code>script</code></a></h3>
+          <p>El elemento <code data-code-type="element">script</code> representa permite incluir contenido dinamicoy bloques de datos en los documentos.</p>
+          <div class="example">
+            <code class="box">&lt;script src=&quot;game-engine.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/x-game-map&quot;&gt;
+........U.........e
+o............A....e
+.....A.....AAA....e
+.A..AAA...AAAAA...e
+&lt;/script&gt;</code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/scripting-1.html#the-noscript-element" target="_blank"><code>noscript</code></a></h3>
+          <p>El elemento <code data-code-type="element">noscript</code> no representa nada si los scripts estan activados. Representa a sus elemntos hijo si los scripts estan desactivados.</p>
+          <div class="example">
+            <code class="box">&lt;noscript&gt;
+  &lt;input type=submit value=&quot;Calculate Square&quot; /&gt;
+  &lt;/noscript&gt;</code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/scripting-1.html#the-template-element" target="_blank"><code>template</code></a></h3>
+          <p>El elemento <code data-code-type="element">template</code> es usado para declarar fragmentos de HTML que pueden ser clonados e insertados en el documento por un script.</p>
+          <div class="example">
+            <code class="box">&lt;template id=&quot;row&quot;&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;&lt;td&gt;
+  &lt;/template&gt;</code>
+          </div>
         </section>
         <section>
           <h3>Elemento <a href="https://www.w3.org/TR/html/scripting-1.html#the-canvas-element" target="_blank"><code>canvas</code></a></h3>
+          <p>El elemento <code data-code-type="element">canvas</code> provee a los scripts con un lienzo con una resolución, que puede ser usado para renderizar gráficas.</p>
+          <div class="example">
+            <code class="box">&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot;&gt;&lt;/canvas&gt;</code>
+          </div>
         </section>
       </section>
     </main>
